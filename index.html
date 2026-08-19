@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PlantKart — Futuristic Anti-Gravity Botanical E-Commerce</title>
+  <meta name="description" content="Experience zero-gravity botanical luxury with PlantKart. Self-levitating indoor plants, smart magnetic pots, and anti-gravity bio-habitats." />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Feather / Lucide Icons SVG CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Particle Background Canvas -->
+  <canvas id="bg-particles"></canvas>
+
+  <!-- Navigation Bar -->
+  <header class="glass-nav">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <div class="logo-icon">
+          <i data-lucide="sparkles"></i>
+        </div>
+        <span class="logo-text">Plant<span class="highlight">Kart</span></span>
+        <span class="badge-zero-g">Zero-G</span>
+      </a>
+
+      <nav class="nav-links" id="nav-links">
+        <a href="#hero" class="nav-item active">Home</a>
+        <a href="#shop" class="nav-item">Shop</a>
+        <a href="#categories" class="nav-item">Categories</a>
+        <a href="#care-guide" class="nav-item">Care Guide</a>
+        <a href="#tech" class="nav-item">Levitation Tech</a>
+        <a href="#" id="nav-gardener-link" class="nav-item gardener-nav-tag hidden"><i data-lucide="sprout" style="width: 14px; height: 14px; margin-right: 4px;"></i> Gardener Portal</a>
+        <a href="#" id="nav-admin-link" class="nav-item admin-nav-tag hidden"><i data-lucide="shield" style="width: 14px; height: 14px; margin-right: 4px;"></i> Admin Portal</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Search Bar -->
+        <div class="search-wrapper">
+          <i data-lucide="search" class="search-icon"></i>
+          <input type="text" id="search-input" placeholder="Search floating plants, pots..." autocomplete="off" />
+          <button id="search-clear" class="search-clear hidden">&times;</button>
+          <div id="search-suggestions" class="search-suggestions hidden"></div>
+        </div>
+
+        <!-- Wishlist Button -->
+        <button id="wishlist-btn" class="icon-btn" title="Wishlist">
+          <i data-lucide="heart"></i>
+          <span id="wishlist-count" class="badge">0</span>
+        </button>
+
+        <!-- Cart Button -->
+        <button id="cart-btn" class="icon-btn cart-trigger" title="Cart">
+          <i data-lucide="shopping-bag"></i>
+          <span id="cart-count" class="badge">0</span>
+        </button>
+
+        <!-- User Profile / Login Button -->
+        <button id="login-nav-btn" class="btn btn-secondary btn-sm nav-login-btn" title="Login / Account">
+          <i data-lucide="log-in" style="width: 16px; height: 16px;" id="login-nav-icon"></i>
+          <span id="user-nav-label">Login</span>
+        </button>
+        <button id="logout-nav-btn" class="btn btn-secondary btn-xs hidden" title="Logout" style="padding: 6px 10px;">
+          <i data-lucide="log-out" style="width: 14px; height: 14px;"></i>
+        </button>
+
+        <button id="profile-btn" class="icon-btn hidden" title="User Profile">
+          <i data-lucide="user"></i>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-toggle" class="icon-btn mobile-only" title="Menu">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-pill">
+            <i data-lucide="zap" class="pill-icon"></i>
+            <span>Next-Gen Levitating Botanicals</span>
+          </div>
+
+          <h1 class="hero-title">
+            Bring Nature <br />
+            <span class="gradient-text">Into Your Home</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            Experience zero-gravity botanical luxury. Self-levitating indoor plants, smart magnetic habitats, and automated moisture misting designed for futuristic living.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#shop" class="btn btn-primary btn-glow">
+              <span>Explore Collection</span>
+              <i data-lucide="arrow-right"></i>
+            </a>
+            <button id="demo-video-btn" class="btn btn-secondary glass-btn">
+              <i data-lucide="play-circle"></i>
+              <span>Watch Zero-G Demo</span>
+            </button>
+          </div>
+
+          <!-- Quick Metrics Ticker -->
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number">15,000+</span>
+              <span class="stat-label">Zero-G Plants Delivered</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">99.9%</span>
+              <span class="stat-label">Magnetic Lock Stability</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number">4.96 ★</span>
+              <span class="stat-label">Verified Buyer Rating</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Levitation Showcase Centerpiece -->
+        <div class="hero-visual">
+          <div class="levitation-container" id="hero-levitation-card">
+            <!-- Ambient Bio Glow Ring -->
+            <div class="glow-orb"></div>
+            <div class="magnetic-field-ring ring-1"></div>
+            <div class="magnetic-field-ring ring-2"></div>
+            
+            <!-- Floating Plant Image -->
+            <div class="floating-plant-wrapper">
+              <img src="assets/monstera.png" alt="Floating Monstera Deliciosa" class="floating-plant-img" id="hero-plant-img" />
+              
+              <!-- Floating Interactive Hud Badges -->
+              <div class="hud-badge hud-1">
+                <i data-lucide="activity"></i>
+                <div>
+                  <span class="hud-title">MagLev Stability</span>
+                  <span class="hud-value">100% Lock</span>
+                </div>
+              </div>
+
+              <div class="hud-badge hud-2">
+                <i data-lucide="droplets"></i>
+                <div>
+                  <span class="hud-title">Smart Mist</span>
+                  <span class="hud-value">Hydrated (88%)</span>
+                </div>
+              </div>
+
+              <div class="hud-badge hud-3">
+                <i data-lucide="wind"></i>
+                <div>
+                  <span class="hud-title">Air Purifying</span>
+                  <span class="hud-value">99.4% Ozone Clean</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Glowing Anti-Gravity Base -->
+            <div class="levitation-base">
+              <div class="base-plate">
+                <div class="base-light-ring"></div>
+                <div class="base-text">MAGLEV BIOSPHERE v4.2</div>
+              </div>
+              <div class="base-shadow"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories Navigation Bar Section -->
+    <section id="categories" class="section-padding">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Curated Collections</span>
+          <h2 class="section-title">Explore Anti-Gravity Categories</h2>
+          <p class="section-subtitle">Choose from self-floating indoor greenery, rare succulents, smart ceramic bases, and bio-nutritional seeds.</p>
+        </div>
+
+        <div class="category-pills" id="category-pills">
+          <button class="cat-pill active" data-category="all">
+            <i data-lucide="grid"></i>
+            <span>All Products</span>
+          </button>
+          <button class="cat-pill" data-category="indoor">
+            <i data-lucide="home"></i>
+            <span>Indoor Plants</span>
+          </button>
+          <button class="cat-pill" data-category="succulents">
+            <i data-lucide="sun"></i>
+            <span>Succulents</span>
+          </button>
+          <button class="cat-pill" data-category="flowering">
+            <i data-lucide="flower-2"></i>
+            <span>Flowering Plants</span>
+          </button>
+          <button class="cat-pill" data-category="outdoor">
+            <i data-lucide="trees"></i>
+            <span>Outdoor & Bonsai</span>
+          </button>
+          <button class="cat-pill" data-category="pots">
+            <i data-lucide="box"></i>
+            <span>Smart Pots & Bases</span>
+          </button>
+          <button class="cat-pill" data-category="accessories">
+            <i data-lucide="wrench"></i>
+            <span>Care & Accessories</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shop / Product Section -->
+    <section id="shop" class="section-padding shop-section">
+      <div class="container">
+        <div class="shop-controls">
+          <div class="results-count" id="results-count">Showing products</div>
+          
+          <div class="filter-sort-group">
+            <label for="sort-select" class="sort-label">Sort By:</label>
+            <select id="sort-select" class="glass-select">
+              <option value="featured">Featured / Popular</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="rating">Highest Rated</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Product Grid Container -->
+        <div id="product-grid" class="product-grid">
+          <!-- Dynamically Injected Cards -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Plant Finder Care Guide Section -->
+    <section id="care-guide" class="section-padding care-section">
+      <div class="container">
+        <div class="care-box glass-card">
+          <div class="care-grid">
+            <div class="care-intro">
+              <span class="section-tag">Interactive AI Assistant</span>
+              <h2 class="section-title">Find Your Perfect Levitating Plant</h2>
+              <p>Not sure which zero-gravity species fits your space? Select your room's light levels and care availability to get instant recommendations.</p>
+              
+              <form id="plant-quiz-form" class="quiz-form">
+                <div class="quiz-step">
+                  <label class="quiz-label"><i data-lucide="sun"></i> Sunlight Exposure:</label>
+                  <div class="quiz-options">
+                    <button type="button" class="quiz-btn active" data-param="light" data-val="low">Low / Artificial Light</button>
+                    <button type="button" class="quiz-btn" data-param="light" data-val="bright">Bright Indirect Light</button>
+                    <button type="button" class="quiz-btn" data-param="light" data-val="direct">Full Direct Sun</button>
+                  </div>
+                </div>
+
+                <div class="quiz-step">
+                  <label class="quiz-label"><i data-lucide="droplets"></i> Watering Commitment:</label>
+                  <div class="quiz-options">
+                    <button type="button" class="quiz-btn active" data-param="water" data-val="auto">Smart Auto-Mist Pot (Zero Effort)</button>
+                    <button type="button" class="quiz-btn" data-param="water" data-val="weekly">Once Weekly</button>
+                    <button type="button" class="quiz-btn" data-param="water" data-val="monthly">Bi-Weekly / Minimal</button>
+                  </div>
+                </div>
+
+                <div class="quiz-step">
+                  <label class="quiz-label"><i data-lucide="shield-check"></i> Pet Safety Preference:</label>
+                  <div class="quiz-options">
+                    <button type="button" class="quiz-btn active" data-param="pet" data-val="safe">100% Non-Toxic & Pet Safe</button>
+                    <button type="button" class="quiz-btn" data-param="pet" data-val="any">Any Safety Rating</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="care-result-panel">
+              <div class="result-header">
+                <h3>Recommended Match</h3>
+                <span class="match-score">99.4% Match</span>
+              </div>
+              <div id="quiz-recommended-card" class="quiz-card-wrapper">
+                <!-- Injected via JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Science & Levitation Tech Section -->
+    <section id="tech" class="section-padding tech-section">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-tag">Botanical Innovation</span>
+          <h2 class="section-title">The Science of Anti-Gravity Botanicals</h2>
+          <p class="section-subtitle">How our patent-pending bio-magnetic field technology revolutionizes plant vitality and modern living space design.</p>
+        </div>
+
+        <div class="tech-grid">
+          <div class="tech-card glass-card">
+            <div class="tech-icon"><i data-lucide="compass"></i></div>
+            <h3>360° Electromagnetic Suspension</h3>
+            <p>Our neodymium magnetic core balances the plant pot in mid-air, allowing smooth, friction-free 360-degree rotation that maximizes sunlight absorption on all leaves.</p>
+          </div>
+
+          <div class="tech-card glass-card">
+            <div class="tech-icon"><i data-lucide="zap"></i></div>
+            <h3>Inductive Zero-Wire Power</h3>
+            <p>Power is wirelessly transferred from the base plate to the floating pot to drive built-in soil humidity sensors and glowing ambient LED pulse lights.</p>
+          </div>
+
+          <div class="tech-card glass-card">
+            <div class="tech-icon"><i data-lucide="cpu"></i></div>
+            <h3>Micro-Osmotic Moisture Regulation</h3>
+            <p>Intelligent sensors detect root moisture level and trigger micro-aerosol ultrasonic misting to maintain optimal hydration without over-watering.</p>
+          </div>
+
+          <div class="tech-card glass-card">
+            <div class="tech-icon"><i data-lucide="shield"></i></div>
+            <h3>Aerospace-Grade Thermal Pods</h3>
+            <p>Ultra-lightweight ceramic composite pots resist moisture build-up and maintain ideal root thermal conditions in any room environment.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="about" class="section-padding testimonials-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Verified Customer Praise</span>
+          <h2 class="section-title">Loved by Modern Designers & Plant Enthusiasts</h2>
+        </div>
+
+        <div class="testimonial-grid">
+          <div class="testimonial-card glass-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">"The levitating Monstera centerpiece completely transformed my living room. People can't stop staring at it! The magnetic field is rock solid."</p>
+            <div class="reviewer">
+              <div class="avatar">EB</div>
+              <div>
+                <span class="reviewer-name">Elena Rostova</span>
+                <span class="reviewer-title">Architectural Designer, Tokyo</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card glass-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">"PlantKart's smart levitation pot is pure genius. My Bonsai tree floats effortlessly and gets even sunlight thanks to the gentle rotation."</p>
+            <div class="reviewer">
+              <div class="avatar">MK</div>
+              <div>
+                <span class="reviewer-name">Marcus Vance</span>
+                <span class="reviewer-title">Tech Founder, San Francisco</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card glass-card">
+            <div class="stars">★★★★★</div>
+            <p class="review-text">"The glassmorphism aesthetic of the site is gorgeous, but the product itself exceeds expectations. Ultra high quality and fast Zero-G delivery!"</p>
+            <div class="reviewer">
+              <div class="avatar">SL</div>
+              <div>
+                <span class="reviewer-name">Sophia Lin</span>
+                <span class="reviewer-title">Interior Stylist, London</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Floating Shopping Cart Slide-Over Panel -->
+  <div id="cart-drawer" class="drawer-overlay hidden">
+    <div class="drawer glass-drawer">
+      <div class="drawer-header">
+        <div class="drawer-title">
+          <i data-lucide="shopping-bag"></i>
+          <h2>Your Zero-G Cart</h2>
+          <span id="drawer-cart-count" class="cart-pill-count">0 items</span>
+        </div>
+        <button id="cart-close" class="close-btn">&times;</button>
+      </div>
+
+      <div class="shipping-meter">
+        <div class="meter-text" id="meter-text">Add $99 more for Free Zero-G Delivery</div>
+        <div class="meter-bar"><div id="meter-progress" class="meter-fill" style="width: 35%;"></div></div>
+      </div>
+
+      <div id="cart-items" class="cart-items-list">
+        <!-- Cart Items Injected JS -->
+      </div>
+
+      <div class="drawer-footer">
+        <div class="promo-box">
+          <input type="text" id="promo-input" placeholder="Promo code (Try: ANTIGRAVITY10)" />
+          <button id="promo-apply-btn" class="btn btn-secondary btn-sm">Apply</button>
+        </div>
+        <div id="promo-msg" class="promo-msg"></div>
+
+        <div class="cart-summary">
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span id="cart-subtotal">$0.00</span>
+          </div>
+          <div class="summary-row">
+            <span>Estimated Zero-G Shipping</span>
+            <span id="cart-shipping">$0.00</span>
+          </div>
+          <div class="summary-row discount-row hidden" id="discount-row">
+            <span>Discount (10%)</span>
+            <span id="cart-discount">-$0.00</span>
+          </div>
+          <div class="summary-row total-row">
+            <span>Total</span>
+            <span id="cart-total" class="total-price">$0.00</span>
+          </div>
+        </div>
+
+        <button id="checkout-btn" class="btn btn-primary btn-block btn-glow">
+          <span>Proceed to Checkout</span>
+          <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wishlist Drawer / Modal -->
+  <div id="wishlist-modal" class="drawer-overlay hidden">
+    <div class="drawer glass-drawer">
+      <div class="drawer-header">
+        <div class="drawer-title">
+          <i data-lucide="heart"></i>
+          <h2>Your Wishlist</h2>
+          <span id="drawer-wish-count" class="cart-pill-count">0 saved</span>
+        </div>
+        <button id="wishlist-close" class="close-btn">&times;</button>
+      </div>
+
+      <div id="wishlist-items" class="cart-items-list">
+        <!-- Wishlist Items Injected JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick View Product Modal -->
+  <div id="quickview-modal" class="modal-overlay hidden">
+    <div class="modal-card glass-card">
+      <button id="quickview-close" class="close-btn modal-close">&times;</button>
+      <div id="quickview-content" class="quickview-grid">
+        <!-- Quick view content injected JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- User Profile Modal -->
+  <div id="profile-modal" class="modal-overlay hidden">
+    <div class="modal-card glass-card profile-card">
+      <button id="profile-close" class="close-btn modal-close">&times;</button>
+      <div class="profile-header">
+        <div class="profile-avatar">
+          <i data-lucide="user-check"></i>
+        </div>
+        <div>
+          <h3>Commander Alex Rivera</h3>
+          <span class="user-tier">Zero-G Pioneer Member</span>
+        </div>
+      </div>
+
+      <div class="profile-stats-grid">
+        <div class="p-stat">
+          <span class="p-val">3</span>
+          <span class="p-lbl">Levitating Plants</span>
+        </div>
+        <div class="p-stat">
+          <span class="p-val">100%</span>
+          <span class="p-lbl">Hydration Score</span>
+        </div>
+        <div class="p-stat">
+          <span class="p-val">1,450</span>
+          <span class="p-lbl">Bio-Points</span>
+        </div>
+      </div>
+
+      <div class="profile-section">
+        <h4><i data-lucide="package"></i> Active Levitation Bases</h4>
+        <div class="active-base-item">
+          <span class="base-dot active"></span>
+          <div>
+            <strong>Monstera MagLev Base #01</strong>
+            <p>Field Frequency: 440Hz | Battery: 94%</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Checkout Modal (Address + UPI/Card/COD Payment Gateways) -->
+  <div id="checkout-modal" class="modal-overlay hidden">
+    <div class="modal-card glass-card checkout-card-lg">
+      <button id="checkout-close" class="close-btn modal-close">&times;</button>
+      
+      <!-- 1. Checkout Form View -->
+      <div id="checkout-form-view" class="checkout-grid-container">
+        <div class="checkout-main-form">
+          <div class="checkout-header">
+            <i data-lucide="shield-check" class="checkout-header-icon"></i>
+            <div>
+              <h2>Zero-G Secure Checkout</h2>
+              <p>Complete your delivery address and preferred payment method.</p>
+            </div>
+          </div>
+
+          <form id="checkout-form" onsubmit="event.preventDefault(); submitOrder();">
+            <!-- Step 1: Shipping Address -->
+            <div class="checkout-section">
+              <h3 class="checkout-section-title"><i data-lucide="map-pin"></i> 1. Delivery & Address</h3>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Full Name *</label>
+                  <input type="text" id="co-name" placeholder="e.g. Alex Rivera" required />
+                </div>
+                <div class="form-group">
+                  <label>Mobile Number *</label>
+                  <input type="tel" id="co-phone" placeholder="e.g. +91 98765 43210" required />
+                </div>
+                <div class="form-group span-2">
+                  <label>Street Address *</label>
+                  <input type="text" id="co-address" placeholder="Flat, Building, Street Name" required />
+                </div>
+                <div class="form-group">
+                  <label>City *</label>
+                  <input type="text" id="co-city" placeholder="e.g. Bangalore / New York" required />
+                </div>
+                <div class="form-group">
+                  <label>State & PIN Code *</label>
+                  <input type="text" id="co-zip" placeholder="e.g. KA - 560001" required />
+                </div>
+              </div>
+            </div>
+
+            <!-- Step 2: Payment Method Selector -->
+            <div class="checkout-section">
+              <h3 class="checkout-section-title"><i data-lucide="credit-card"></i> 2. Select Payment Method</h3>
+              <div class="payment-selector-tabs">
+                <button type="button" class="pay-tab active" data-method="upi">
+                  <i data-lucide="smartphone"></i>
+                  <span>UPI / QR</span>
+                </button>
+                <button type="button" class="pay-tab" data-method="card">
+                  <i data-lucide="credit-card"></i>
+                  <span>Card</span>
+                </button>
+                <button type="button" class="pay-tab" data-method="cod">
+                  <i data-lucide="truck"></i>
+                  <span>Cash on Delivery</span>
+                </button>
+              </div>
+
+              <!-- Payment Details Panels -->
+              <div class="payment-panel-wrapper">
+                <!-- UPI Panel -->
+                <div id="pay-panel-upi" class="pay-panel active">
+                  <p class="pay-panel-desc">Pay instantly using Google Pay, PhonePe, Paytm, or any UPI App.</p>
+                  <div class="form-group" style="margin-bottom: 14px;">
+                    <label>Enter VPA / UPI ID</label>
+                    <input type="text" id="co-upi-id" placeholder="username@upi (e.g. alex@okaxis)" />
+                  </div>
+                  <div class="qr-preview-box">
+                    <div class="qr-mock">
+                      <i data-lucide="qr-code"></i>
+                    </div>
+                    <div>
+                      <strong>Scan & Pay via Any UPI App</strong>
+                      <p>Instant Zero-G Payment Verification Active</p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card Panel -->
+                <div id="pay-panel-card" class="pay-panel hidden">
+                  <div class="form-grid">
+                    <div class="form-group span-2">
+                      <label>Cardholder Name</label>
+                      <input type="text" id="co-card-name" placeholder="Name as on Card" />
+                    </div>
+                    <div class="form-group span-2">
+                      <label>Card Number</label>
+                      <input type="text" id="co-card-num" placeholder="4532 •••• •••• 8912" maxlength="19" />
+                    </div>
+                    <div class="form-group">
+                      <label>Expiry Date</label>
+                      <input type="text" id="co-card-exp" placeholder="MM/YY" maxlength="5" />
+                    </div>
+                    <div class="form-group">
+                      <label>CVV / CVC</label>
+                      <input type="password" id="co-card-cvv" placeholder="•••" maxlength="3" />
+                    </div>
+                  </div>
+                </div>
+
+                <!-- COD Panel -->
+                <div id="pay-panel-cod" class="pay-panel hidden">
+                  <div class="cod-box">
+                    <i data-lucide="coins" class="cod-icon"></i>
+                    <div>
+                      <strong>Cash on Delivery Eligible</strong>
+                      <p>Pay cash or UPI scan directly to our levitation parcel courier upon delivery.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block btn-glow btn-lg" style="margin-top: 16px;">
+              <i data-lucide="lock"></i>
+              <span>Confirm & Pay Now</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Sidebar Summary -->
+        <div class="checkout-sidebar">
+          <h3>Order Summary</h3>
+          <div id="checkout-items-list" class="checkout-items-mini">
+            <!-- Injected via JS -->
+          </div>
+
+          <div class="checkout-totals">
+            <div class="c-row">
+              <span>Subtotal</span>
+              <span id="co-subtotal">$0.00</span>
+            </div>
+            <div class="c-row">
+              <span>Shipping</span>
+              <span id="co-shipping">FREE</span>
+            </div>
+            <div class="c-row hidden" id="co-discount-row">
+              <span>Discount (10%)</span>
+              <span id="co-discount">-$0.00</span>
+            </div>
+            <div class="c-row total-row">
+              <span>Total Payable</span>
+              <span id="co-total">$0.00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Order Confirmation View -->
+      <div class="checkout-success hidden" id="checkout-success-view">
+        <div class="success-icon-ring">
+          <i data-lucide="check-circle-2"></i>
+        </div>
+        <h2>Order Confirmed!</h2>
+        <p>Your zero-gravity botanical parcel is calibrated and undergoing magnetic transit preparation.</p>
+        <div class="order-number-box">Order Reference: <strong id="succ-order-ref">#PK-MAGLEV-9842</strong></div>
+        <div id="succ-order-details" class="succ-details-box">
+          <!-- Injected via JS -->
+        </div>
+        <div class="succ-actions">
+          <button id="checkout-finish-btn" class="btn btn-primary btn-glow">Return to Gallery</button>
+          <button onclick="window.print()" class="btn btn-secondary"><i data-lucide="printer"></i> Print Receipt</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. First-Entry Authentication Gate Modal -->
+  <div id="entry-gate-modal" class="modal-overlay">
+    <div class="modal-card glass-card gate-card">
+      <div class="gate-header">
+        <div class="logo-icon-lg">
+          <i data-lucide="sparkles"></i>
+        </div>
+        <h2>Welcome to PlantKart</h2>
+        <p>Futuristic Anti-Gravity Botanical Marketplace</p>
+        <span class="gate-tag">Select Your Login Access Role To Enter</span>
+      </div>
+
+      <div class="gate-role-grid">
+        <div class="gate-role-card" onclick="selectGateRole('customer')">
+          <div class="gate-role-icon customer-icon">
+            <i data-lucide="shopping-bag"></i>
+          </div>
+          <h3>Customer / Buyer</h3>
+          <p>Browse levitating plants, filter by garden, place orders via UPI/Card/COD.</p>
+          <button class="btn btn-secondary btn-sm btn-block">Enter as Customer</button>
+        </div>
+
+        <div class="gate-role-card" onclick="selectGateRole('gardener')">
+          <div class="gate-role-icon gardener-icon">
+            <i data-lucide="sprout"></i>
+          </div>
+          <h3>Gardener / Seller</h3>
+          <p>Add plants, fix unit rates ($), accept incoming orders & track garden sales.</p>
+          <button class="btn btn-primary btn-sm btn-block btn-glow">Enter as Gardener</button>
+        </div>
+
+        <div class="gate-role-card" onclick="selectGateRole('admin')">
+          <div class="gate-role-icon admin-icon">
+            <i data-lucide="shield-alert"></i>
+          </div>
+          <h3>Super Admin</h3>
+          <p>Add gardens, view all platform data, garden-wise sales & total revenue.</p>
+          <button class="btn btn-secondary btn-sm btn-block">Enter as Admin</button>
+        </div>
+      </div>
+
+      <div class="gate-demo-footer">
+        <span>⚡ MCA Viva 1-Click Quick Demo Login:</span>
+        <div class="gate-demo-buttons">
+          <button type="button" class="btn btn-secondary btn-xs" onclick="quickGateLogin('customer')">Login Customer</button>
+          <button type="button" class="btn btn-primary btn-xs btn-glow" onclick="quickGateLogin('gardener')">Login Gardener</button>
+          <button type="button" class="btn btn-secondary btn-xs" onclick="quickGateLogin('admin')">Login Super Admin</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Login / Register Modal -->
+  <div id="login-modal" class="modal-overlay hidden">
+    <div class="modal-card glass-card auth-card">
+      <button id="login-close" class="close-btn modal-close">&times;</button>
+      
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="auth-tab-login">Sign In</button>
+        <button class="auth-tab" id="auth-tab-register">Register</button>
+      </div>
+
+      <!-- Login Panel -->
+      <div id="auth-panel-login" class="auth-panel">
+        <div class="auth-header">
+          <h3>Welcome Back</h3>
+          <p>Access your levitation plant fleet, orders & garden workspace.</p>
+        </div>
+
+        <form id="login-form" onsubmit="event.preventDefault(); handleLoginSubmit();">
+          <div class="form-group">
+            <label>Email Address / Username</label>
+            <input type="email" id="login-email" placeholder="alex@plantkart.io" required />
+          </div>
+
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="login-password" placeholder="••••••••" required />
+          </div>
+
+          <div class="form-group">
+            <label>Account Access Role</label>
+            <select id="login-role" class="glass-select full-w">
+              <option value="customer">🛒 Customer / Buyer Access</option>
+              <option value="gardener">🌿 Gardener / Seller Portal Access</option>
+              <option value="admin">🛡️ Super Admin Control Access</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-glow">Sign In to PlantKart</button>
+        </form>
+
+        <div class="demo-login-box">
+          <span>Quick Demo Login for Viva:</span>
+          <div class="demo-btn-group">
+            <button type="button" class="btn btn-secondary btn-xs" onclick="fillDemoLogin('customer')">Customer</button>
+            <button type="button" class="btn btn-primary btn-xs btn-glow" onclick="fillDemoLogin('gardener')">Gardener</button>
+            <button type="button" class="btn btn-secondary btn-xs" onclick="fillDemoLogin('admin')">Admin</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Register Panel -->
+      <div id="auth-panel-register" class="auth-panel hidden">
+        <div class="auth-header">
+          <h3>Create Account</h3>
+          <p>Join the PlantKart Zero-G Botanical Marketplace.</p>
+        </div>
+
+        <form id="register-form" onsubmit="event.preventDefault(); handleRegisterSubmit();">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="reg-name" placeholder="Alex Rivera" required />
+          </div>
+
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="reg-email" placeholder="alex@plantkart.io" required />
+          </div>
+
+          <div class="form-group">
+            <label>Register As</label>
+            <select id="reg-role" class="glass-select full-w">
+              <option value="customer">Customer / Buyer</option>
+              <option value="gardener">Gardener / Plant Seller</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="reg-password" placeholder="••••••••" required />
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-glow">Create Account</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gardener Portal Modal -->
+  <div id="gardener-modal" class="modal-overlay hidden">
+    <div class="modal-card glass-card gardener-card">
+      <button id="gardener-close" class="close-btn modal-close">&times;</button>
+
+      <div class="admin-header">
+        <div class="admin-brand">
+          <i data-lucide="sprout" class="admin-logo-icon" style="color: #34d399;"></i>
+          <div>
+            <h2>Gardener Portal Workspace</h2>
+            <p>List Plants, Fix Rates ($), Accept Customer Orders & Manage Garden Inventory</p>
+          </div>
+        </div>
+        <span class="gardener-badge" id="gardener-active-badge">Master Gardener Active</span>
+      </div>
+
+      <!-- Quick Metrics Grid -->
+      <div class="admin-metrics-grid">
+        <div class="admin-metric-card">
+          <span class="m-lbl">My Garden</span>
+          <span class="m-val" id="gard-stat-garden" style="font-size: 1.1rem;">Zen Garden</span>
+        </div>
+        <div class="admin-metric-card">
+          <span class="m-lbl">Listed Plants</span>
+          <span class="m-val" id="gard-stat-plants">4</span>
+        </div>
+        <div class="admin-metric-card">
+          <span class="m-lbl">Pending Orders</span>
+          <span class="m-val" id="gard-stat-pending" style="color: #fbbf24;">2</span>
+        </div>
+        <div class="admin-metric-card">
+          <span class="m-lbl">My Earnings</span>
+          <span class="m-val" id="gard-stat-earnings">$876.00</span>
+        </div>
+      </div>
+
+      <!-- Gardener Nav Tabs -->
+      <div class="admin-nav-tabs">
+        <button class="gardener-tab active" data-tab="orders"><i data-lucide="bell"></i> Customer Orders & Acceptance</button>
+        <button class="gardener-tab" data-tab="add-plant"><i data-lucide="plus-circle"></i> Add Plant & Fix Rate</button>
+        <button class="gardener-tab" data-tab="inventory"><i data-lucide="box"></i> My Garden Catalog</button>
+      </div>
+
+      <div class="admin-content-box">
+        <!-- 1. Gardener Orders Panel -->
+        <div id="gardener-panel-orders" class="gardener-panel active">
+          <div id="gardener-orders-list">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+
+        <!-- 2. Add Plant & Fix Rate Panel -->
+        <div id="gardener-panel-add-plant" class="gardener-panel hidden">
+          <form id="gardener-add-plant-form" onsubmit="event.preventDefault(); handleGardenerAddPlant();">
+            <div class="form-grid">
+              <div class="form-group span-2">
+                <label>Plant Name *</label>
+                <input type="text" id="g-p-name" placeholder="e.g. Floating Emerald Fern" required />
+              </div>
+              <div class="form-group">
+                <label>Assign to Garden *</label>
+                <select id="g-p-garden" class="glass-select" required>
+                  <!-- Injected via JS -->
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Category *</label>
+                <select id="g-p-category" class="glass-select">
+                  <option value="indoor">Indoor Plants</option>
+                  <option value="succulents">Succulents</option>
+                  <option value="flowering">Flowering Plants</option>
+                  <option value="outdoor">Outdoor & Bonsai</option>
+                  <option value="pots">Smart Pots & Bases</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Fix Unit Rate / Price ($) *</label>
+                <input type="number" step="0.01" id="g-p-price" placeholder="149.00" required />
+              </div>
+              <div class="form-group">
+                <label>Feature Badge Tag</label>
+                <input type="text" id="g-p-badge" placeholder="e.g. Organic MagLev" />
+              </div>
+              <div class="form-group">
+                <label>Image Model</label>
+                <select id="g-p-image" class="glass-select">
+                  <option value="assets/monstera.png">Monstera Deliciosa</option>
+                  <option value="assets/succulent.png">Echeveria Succulent</option>
+                  <option value="assets/orchid.png">Ethereal Orchid</option>
+                  <option value="assets/bonsai.png">Juniper Bonsai</option>
+                  <option value="assets/smart_pot.png">Smart Ceramic Base</option>
+                </select>
+              </div>
+              <div class="form-group span-2">
+                <label>Gardener Description & Care Notes</label>
+                <textarea id="g-p-desc" rows="3" class="glass-textarea" placeholder="Describe soil mix, magnetic base requirements, hydration schedules..."></textarea>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-glow" style="margin-top: 16px;">
+              <i data-lucide="plus"></i> Add Plant & Fix Rate
+            </button>
+          </form>
+        </div>
+
+        <!-- 3. My Garden Inventory Panel -->
+        <div id="gardener-panel-inventory" class="gardener-panel hidden">
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Plant</th>
+                  <th>Garden</th>
+                  <th>Fixed Rate ($)</th>
+                  <th>Badge</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="gardener-inventory-table-body">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Dashboard Modal -->
+  <div id="admin-modal" class="modal-overlay hidden">
+    <div class="modal-card glass-card admin-card">
+      <button id="admin-close" class="close-btn modal-close">&times;</button>
+
+      <div class="admin-header">
+        <div class="admin-brand">
+          <i data-lucide="shield-alert" class="admin-logo-icon"></i>
+          <div>
+            <h2>PlantKart Super Admin Control Center</h2>
+            <p>Add Gardens/Nurseries, Garden Selling Analytics, Revenue Reports & Full Control</p>
+          </div>
+        </div>
+        <span class="admin-badge">Superadmin Active</span>
+      </div>
+
+      <!-- Quick Metrics Grid -->
+      <div class="admin-metrics-grid">
+        <div class="admin-metric-card">
+          <span class="m-lbl">Active Gardens</span>
+          <span class="m-val" id="adm-stat-gardens">3</span>
+        </div>
+        <div class="admin-metric-card">
+          <span class="m-lbl">Catalog Plants</span>
+          <span class="m-val" id="adm-stat-products">8</span>
+        </div>
+        <div class="admin-metric-card">
+          <span class="m-lbl">Platform Revenue</span>
+          <span class="m-val" id="adm-stat-revenue">$1,450.00</span>
+        </div>
+        <div class="admin-metric-card">
+          <span class="m-lbl">Registered Accounts</span>
+          <span class="m-val" id="adm-stat-users">12</span>
+        </div>
+      </div>
+
+      <!-- Admin Tab Controls -->
+      <div class="admin-nav-tabs">
+        <button class="admin-tab active" data-tab="revenue"><i data-lucide="trending-up"></i> Garden Selling & Revenue</button>
+        <button class="admin-tab" data-tab="add-garden"><i data-lucide="plus-square"></i> Add Garden / Nursery</button>
+        <button class="admin-tab" data-tab="products"><i data-lucide="box"></i> Plant Catalog</button>
+        <button class="admin-tab" data-tab="orders"><i data-lucide="shopping-bag"></i> All Orders</button>
+        <button class="admin-tab" data-tab="users"><i data-lucide="users"></i> Accounts</button>
+      </div>
+
+      <!-- Admin Tab Panels -->
+      <div class="admin-content-box">
+        <!-- 1. Garden Selling & Revenue Analytics Panel -->
+        <div id="admin-panel-revenue" class="admin-panel active">
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Garden / Nursery</th>
+                  <th>Master Gardener</th>
+                  <th>Location</th>
+                  <th>Plants Listed</th>
+                  <th>Total Garden Sales ($)</th>
+                  <th>Platform Fee (15%)</th>
+                </tr>
+              </thead>
+              <tbody id="admin-revenue-table-body">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 2. Add Garden Panel -->
+        <div id="admin-panel-add-garden" class="admin-panel hidden">
+          <form id="add-garden-form" onsubmit="event.preventDefault(); handleAdminAddGarden();">
+            <div class="form-grid">
+              <div class="form-group span-2">
+                <label>Garden / Nursery Name *</label>
+                <input type="text" id="adm-g-name" placeholder="e.g. Horizon Bio-Sphere Nursery" required />
+              </div>
+              <div class="form-group">
+                <label>Assigned Master Gardener *</label>
+                <input type="text" id="adm-g-owner" placeholder="e.g. Master Kenji / Elena Rostova" required />
+              </div>
+              <div class="form-group">
+                <label>Location Sector *</label>
+                <input type="text" id="adm-g-location" placeholder="e.g. Bio-Dome Sector 9" required />
+              </div>
+              <div class="form-group span-2">
+                <label>Botanical Specialty</label>
+                <input type="text" id="adm-g-specialty" placeholder="e.g. Rare Air-Purifying Levitating Ferns" />
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-glow" style="margin-top: 16px;">
+              <i data-lucide="plus"></i> Add Garden / Nursery to Platform
+            </button>
+          </form>
+        </div>
+
+        <!-- 3. Products Panel -->
+        <div id="admin-panel-products" class="admin-panel hidden">
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Plant</th>
+                  <th>Garden</th>
+                  <th>Category</th>
+                  <th>Rate ($)</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="admin-products-table-body">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 4. Orders Panel -->
+        <div id="admin-panel-orders" class="admin-panel hidden">
+          <div id="admin-orders-list">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+
+        <!-- 5. Users Panel -->
+        <div id="admin-panel-users" class="admin-panel hidden">
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Account Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Bio-Points</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="admin-users-table-body">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Demo Video Modal -->
+  <div id="video-modal" class="modal-overlay hidden">
+    <div class="modal-card glass-card video-card">
+      <button id="video-close" class="close-btn modal-close">&times;</button>
+      <div class="video-container">
+        <div class="demo-animation-box">
+          <div class="pulse-ring"></div>
+          <i data-lucide="sparkles" class="demo-icon"></i>
+          <h3>Zero-Gravity Levitation Engine Simulation</h3>
+          <p>440Hz Bio-magnetic stabilization in active pulse mode.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col brand-col">
+          <a href="#" class="logo">
+            <div class="logo-icon"><i data-lucide="sparkles"></i></div>
+            <span class="logo-text">Plant<span class="highlight">Kart</span></span>
+          </a>
+          <p class="footer-desc">Pioneering the future of living decor with magnetic anti-gravity plants, smart eco-bases, and automated botanical care systems.</p>
+          <div class="newsletter-form">
+            <input type="email" placeholder="Enter email for Zero-G drops..." id="newsletter-input" />
+            <button id="newsletter-btn" class="btn btn-primary">Join</button>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#shop">Indoor Levitating Plants</a></li>
+            <li><a href="#shop">Succulents & Terrariums</a></li>
+            <li><a href="#shop">Smart Magnetic Bases</a></li>
+            <li><a href="#shop">Bio-Nutritional Mists</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Technology</h4>
+          <ul>
+            <li><a href="#tech">MagLev Bio-Rings</a></li>
+            <li><a href="#tech">Wireless Induction</a></li>
+            <li><a href="#care-guide">Plant Finder Assistant</a></li>
+            <li><a href="#tech">Zero-G Shipping</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Support & Contact</h4>
+          <ul>
+            <li><a href="#">Help & FAQs</a></li>
+            <li><a href="#">Levitation Calibration Guide</a></li>
+            <li><a href="#">Warranty & Guarantee</a></li>
+            <li><a href="#">support@plantkart.io</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 PlantKart Inc. All rights reserved. Designed with Anti-Gravity Elegance.</p>
+        <button id="back-to-top" class="back-to-top-btn" title="Levitate to Top">
+          <i data-lucide="arrow-up"></i>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
