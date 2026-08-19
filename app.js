@@ -231,7 +231,7 @@ const videoClose = document.getElementById('video-close');
 
 const toastContainer = document.getElementById('toast-container');
 const quizRecommendedCard = document.getElementById('quiz-recommended-card');
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:8080/api' : '/api';
 
 // --- 4. Initialization & API Synchronization ---
 document.addEventListener('DOMContentLoaded', () => {
